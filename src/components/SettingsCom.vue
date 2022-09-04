@@ -16,17 +16,38 @@
       <PhotoBar/>
     </article>
     <article class="sliders">
-      <div>
+      <div class="slider--one" >
         <p>Розмір фото</p>
-      <Slider1/>
+        <el-slider
+            v-model="numberOfImgSize"
+            max="200"
+            input-size="small"
+            size="small"
+            class="slider"
+            :marks="marks"
+        />
       </div>
       <div>
         <p>Кількість слів</p>
-        <Slider2/>
+        <div class="slider2__container">
+          <el-slider
+              v-model="numberOfWords"
+              input-size="small"
+              class="slider"
+          />
+          <span class="slider2__number">{{ numberOfWords }}</span>
+        </div>
       </div>
       <div>
         <p>Кількість тегів</p>
-        <Slider2/>
+        <div class="slider2__container">
+          <el-slider
+              v-model="numberOfTags"
+              input-size="small"
+              class="slider"
+          />
+          <span class="slider2__number">{{ numberOfTags }}</span>
+        </div>
       </div>
     </article>
   </div>
@@ -36,17 +57,97 @@
 import KeyWord from "@/components/KeyWord";
 import PhotoBar from "@/components/PhotoBar";
 
-import 'vue-slider-component/theme/antd.css'
-import Slider1 from "@/components/Slider1";
-import Slider2 from "@/components/Slider2";
-export default {
-  name: "SettingsCom",
-  components: {Slider2, Slider1, PhotoBar, KeyWord},
+const marks = {
+  0: {
+    style: {
+      color: '#153789',
+      paddingLeft: '10px'
+    },
+    label: '0',
+  },
+  50: '50',
+  100: {
+    style: {
+      color: '#153789',
+    },
+    label: '100',
+  },
+  150: '150',
+  200: {
+    style: {
+      color: '#153789',
+      paddingRight: '20px'
+    },
+    label: '200',
+  },
+
 }
 
+
+export default {
+  name: "SettingsCom",
+  components: { PhotoBar, KeyWord },
+  data() {
+    return {
+      numberOfImgSize: 100,
+      numberOfTags: 5,
+      numberOfWords: 20,
+      marks: marks
+    }
+  },
+}
 </script>
 
+
 <style scoped>
+
+.slider--one {
+  margin-bottom: 20px;
+}
+
+.slider {
+  /*--el-slider-main-bg-color: var(--color-slider)*/
+}
+
+.slider2__container {
+  padding-left: 5px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.slider2__number {
+  box-sizing: border-box;
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 20px;
+  gap: 4px;
+
+  max-width: 30px;
+  width: max-content;
+  height: 24px;
+  margin: 0 5px 0 12px;
+
+  /* white/white */
+
+  background: #FFFFFF;
+  /* gray/300 */
+
+  border: 1px solid #CBD5E1;
+  border-radius: 2px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
+
 
 .sliders {
   width: 100%;

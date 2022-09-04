@@ -10,6 +10,7 @@
 import InstagramPost from "@/components/InstagramPost";
 import SettingsCom from "@/components/SettingsCom";
 export default {
+  el: '#app',
   name: 'App',
   components: {SettingsCom, InstagramPost},
 }
